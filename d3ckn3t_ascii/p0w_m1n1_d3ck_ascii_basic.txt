@@ -1,3 +1,4 @@
+# copy paste the text below into /etc/motd to replace the original message.
 
 
 
