@@ -147,7 +147,7 @@ EOF
     echo "  -u, --user <USER>       Specify the SSH user. (default is $USER)"
     echo "  -t, --target <IP>       Specify the IP of the target Host. (default is $TARGET)"
     echo "  -p, --port <PORT>       Specify the IP of the target Host. (default is 22)"
-    echo "  -c, --command <command> Set login command for ssh session. (defult is $login_command)"
+    echo "  -c, --command <COMMAND> Set login command for ssh session. (defult is $COMMAND)"
     echo
     echo "  -s, --setup             Run setup to configure default values."
     echo "  -h, --help              Display this usage / help message."
@@ -188,10 +188,10 @@ EOF
   sleep .3
   echo "[.]:[...]"
   sleep .3
-  echo "[#]:[d3ckn3t]:[AP]:[ping]:[$TARGET]"
+  echo "[#]:[d3ckn3t]:[AP]:[ping]:[$DEFAULT_TARGET]"
   sleep .3
   echo "[.]:[...]"
-  if ping -c 1 "$TARGET" &> /dev/null; then
+  if ping -c 1 "$DEFAULT_TARGET" &> /dev/null; then
     ssh_connect
   else
     show_menu
@@ -200,14 +200,15 @@ EOF
 
 # Function to connect to the target using SSH
 ssh_connect() {
+  read_config
   echo "[+]:[d3ckn3t]:[client]:[$TARGET]:[Found]"
   sleep .2
   echo "[.]:[...]"
   sleep .2 
-  echo "[+]:[d3ckn3t]:[target locked]:[$USER@$TARGET]"
+  echo "[+]:[d3ckn3t]:[target.lock]:[$DEFAULT_USER@$TARGET]"
   sleep .2
   echo "[.]:[...]"
-  ssh -p "$PORT" "$USER@$TARGET" #"$COMMAND"
+  ssh -p "$PORT" "$DEFAULT_USER@$TARGET" #"$COMMAND"
 }
 
 # Function to show the menu
@@ -470,10 +471,3 @@ trap exit_script SIGTERM
 
 # Start by pinging the target
 ping_target
-
-# to do list:
-# 1. have the ping check to make sure the target ip is actually in a legitimate ip format
-# 2. have the ping check to make sure the port  is actually a number
-# 3. error handling for the nmap scan.
-# 4. possible database of user:target:port:command defaults to choose from.
-# 5. a flag to choose from the above
