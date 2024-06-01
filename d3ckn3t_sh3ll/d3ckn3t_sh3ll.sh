@@ -7,7 +7,7 @@ DEFAULT_PORT=22
 DEFAULT_COMMAND='echo "Connected!"'
 
 # Configuration file location
-CONFIG_FILE="d3ckn3t_config.sh"
+CONFIG_FILE="d3ckn3t_sh3ll_config.sh"
 
 hostname=$(hostname)
 operator=$(whoami)
