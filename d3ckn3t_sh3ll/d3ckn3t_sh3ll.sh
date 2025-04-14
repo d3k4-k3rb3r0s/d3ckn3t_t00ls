@@ -146,7 +146,7 @@ EOF
   echo -e "\nOptions:"
     echo "  -u, --user <USER>       Specify the SSH user. (default is $USER)"
     echo "  -t, --target <IP>       Specify the IP of the target Host. (default is $TARGET)"
-    echo "  -p, --port <PORT>       Specify the IP of the target Host. (default is 22)"
+    echo "  -p, --port <PORT>       Specify the PORT of the target Host. (default is 22)"
     echo "  -c, --command <COMMAND> Set login command for ssh session. (defult is $COMMAND)"
     echo
     echo "  -s, --setup             Run setup to configure default values."
